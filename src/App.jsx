@@ -1,50 +1,46 @@
 
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from "./components/ui/toaster";
 import { Toaster as Sonner } from "./components/ui/sonner";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Provider } from 'react-redux';
-import { store } from './store';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
 
-// Import SASS main file
-import './styles/main.scss';
+// Pages
+import HomePage from './pages/HomePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 const queryClient = new QueryClient();
 
-// Initialize theme based on localStorage or system preference
-const initializeTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const App = () => {
+  const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   
-  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-    document.documentElement.classList.add('dark-mode');
-  } else {
-    document.documentElement.classList.add('light-mode');
-  }
-};
+  // Apply dark/light class to document based on theme state
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
 
-// Call the function before rendering
-initializeTheme();
-
-const App = () => (
-  <Provider store={store}>
+  return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
-  </Provider>
-);
+  );
+};
 
 export default App;

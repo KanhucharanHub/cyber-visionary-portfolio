@@ -3,11 +3,14 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Check if user has a theme preference stored or use system preference
 const getInitialTheme = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    return savedTheme === 'dark';
+  if (typeof window !== 'undefined') {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
-  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return false; // Default to light theme if window is not available
 };
 
 const initialState = {
@@ -20,7 +23,9 @@ export const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.isDarkMode = !state.isDarkMode;
-      localStorage.setItem('theme', state.isDarkMode ? 'dark' : 'light');
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('theme', state.isDarkMode ? 'dark' : 'light');
+      }
     },
   },
 });

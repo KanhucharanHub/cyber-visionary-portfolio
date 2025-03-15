@@ -1,0 +1,125 @@
+
+.card {
+  background-color: var(--card);
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  box-shadow: $shadow-md;
+  transition: all $transition-normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-lg;
+  }
+}
+
+.card-header {
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid var(--border);
+  
+  h3 {
+    margin-bottom: 0;
+  }
+}
+
+.card-body {
+  padding: $spacing-lg;
+}
+
+.card-footer {
+  padding: $spacing-md $spacing-lg;
+  border-top: 1px solid var(--border);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: $border-radius-lg;
+  transition: all $transition-normal;
+  
+  .dark & {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    
+    .dark & {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+.project-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  .project-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    
+    .project-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba($cyber-accent, 0.1);
+      border-radius: $border-radius-md;
+      color: $cyber-accent;
+    }
+  }
+  
+  .project-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .project-description {
+    margin-bottom: $spacing-lg;
+    flex: 1;
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+  }
+  
+  .project-links {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: auto;
+  }
+}
+
+.skill-card {
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  background: linear-gradient(135deg, rgba($cyber-blue, 0.05), rgba($cyber-accent, 0.05));
+  border: 1px solid rgba($cyber-accent, 0.1);
+  
+  .dark & {
+    background: linear-gradient(135deg, rgba($cyber-blue, 0.1), rgba($cyber-accent, 0.1));
+  }
+  
+  .skill-title {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-md;
+    color: $cyber-accent;
+  }
+  
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-sm;
+  }
+}

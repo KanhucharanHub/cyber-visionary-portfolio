@@ -1,8 +1,12 @@
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import { ChevronUp } from 'lucide-react';
 
 const Footer: React.FC = () => {
+  const { personalInfo } = useSelector((state: RootState) => state.portfolio);
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -11,24 +15,24 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="py-10 border-t border-border relative">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
           <div>
-            <div className="font-mono text-xl font-bold hover:text-cyber-accent transition-colors">
-              KC<span className="text-cyber-accent">.</span>
+            <div className="footer-logo">
+              KC<span className="accent">.</span>
             </div>
-            <p className="text-muted-foreground mt-2">
-              Cyber Security Professional
+            <p className="footer-text">
+              {personalInfo.title}
             </p>
           </div>
           
-          <div className="text-center md:text-right">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} Kanhu Charan Pradhan. All rights reserved.
+          <div className="footer-copyright">
+            <p className="copyright-text">
+              {personalInfo.copyright}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">
-              Designed with precision and security in mind.
+            <p className="tagline">
+              {personalInfo.tagline}
             </p>
           </div>
         </div>
@@ -36,7 +40,7 @@ const Footer: React.FC = () => {
       
       <button
         onClick={scrollToTop}
-        className="absolute right-6 -top-5 p-2 rounded-full bg-cyber-accent text-white hover:bg-cyber-blue transition-colors duration-300 shadow-lg"
+        className="scroll-top-btn"
         aria-label="Scroll to top"
       >
         <ChevronUp size={20} />

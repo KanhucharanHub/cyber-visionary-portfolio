@@ -1,71 +1,68 @@
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 import { Briefcase, Calendar, MapPin } from 'lucide-react';
 
 const Experience: React.FC = () => {
+  const { experience } = useSelector((state: RootState) => state.portfolio);
+
   return (
-    <section id="experience" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-6">
+    <section id="experience" className="experience-section">
+      <div className="container">
         <h2 className="section-title">Professional Experience</h2>
         
-        <div className="glass-card p-6 transition-all duration-300 hover:shadow-lg hover:shadow-cyber-accent/10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-4">
-            <div>
-              <h3 className="text-2xl font-bold flex items-center">
-                <Briefcase className="mr-2 text-cyber-accent" size={20} />
-                Cyber Security Intern
+        <div className="experience-card">
+          <div className="experience-header">
+            <div className="position-info">
+              <h3 className="position">
+                <Briefcase className="icon" size={20} />
+                {experience.position}
               </h3>
-              <p className="text-xl mt-1">HackSecure</p>
+              <p className="company">{experience.company}</p>
             </div>
             
-            <div className="flex flex-col md:items-end gap-1">
-              <div className="flex items-center text-muted-foreground">
-                <Calendar className="mr-1" size={16} />
-                <span>2023 - Present</span>
+            <div className="experience-meta">
+              <div className="meta-item">
+                <Calendar className="icon" size={16} />
+                <span>{experience.period}</span>
               </div>
-              <div className="flex items-center text-muted-foreground">
-                <MapPin className="mr-1" size={16} />
-                <span>Your Location</span>
+              <div className="meta-item">
+                <MapPin className="icon" size={16} />
+                <span>{experience.location}</span>
               </div>
             </div>
           </div>
           
-          <p className="mb-6 text-muted-foreground">
-            Working with the security assessment team to identify vulnerabilities, perform penetration tests, and develop recommendations for improving client security postures.
+          <p className="experience-description">
+            {experience.description}
           </p>
           
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-lg mb-2">Key Responsibilities:</h4>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Conducted vulnerability assessments and security audits for client networks and applications</li>
-                <li>Assisted in penetration testing activities to identify security weaknesses in systems</li>
-                <li>Documented findings and developed comprehensive security reports with remediation recommendations</li>
-                <li>Contributed to the development of security policies and procedures</li>
-                <li>Participated in security awareness training sessions for clients</li>
+          <div className="experience-sections">
+            <div className="section">
+              <h4 className="section-title">Key Responsibilities:</h4>
+              <ul className="section-list">
+                {experience.responsibilities.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
             
-            <div>
-              <h4 className="font-semibold text-lg mb-2">Achievements:</h4>
-              <ul className="list-disc pl-5 space-y-2">
-                <li>Identified critical vulnerabilities in a client's web application that could have led to data compromise</li>
-                <li>Developed an automated script to improve efficiency in vulnerability scanning processes</li>
-                <li>Contributed to a security awareness program that improved client understanding of cyber threats</li>
-                <li>Recognized for attention to detail in documenting security findings</li>
+            <div className="section">
+              <h4 className="section-title">Achievements:</h4>
+              <ul className="section-list">
+                {experience.achievements.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
             
-            <div>
-              <h4 className="font-semibold text-lg mb-2">Technologies Used:</h4>
-              <div className="flex flex-wrap gap-2 mt-2">
-                <span className="skill-tag">Metasploit</span>
-                <span className="skill-tag">Nmap</span>
-                <span className="skill-tag">Burp Suite</span>
-                <span className="skill-tag">Wireshark</span>
-                <span className="skill-tag">Kali Linux</span>
-                <span className="skill-tag">OWASP ZAP</span>
-                <span className="skill-tag">Nessus</span>
+            <div className="section">
+              <h4 className="section-title">Technologies Used:</h4>
+              <div className="technologies">
+                {experience.technologies.map((tech, index) => (
+                  <span key={index} className="skill-tag">{tech}</span>
+                ))}
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +50,9 @@ const Navbar: React.FC = () => {
                 {item.name}
               </a>
             ))}
+            
+            {/* Theme Toggle */}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,6 +79,11 @@ const Navbar: React.FC = () => {
               {item.name}
             </a>
           ))}
+          
+          {/* Theme Toggle in Mobile Menu */}
+          <div className="mobile-theme-toggle">
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </nav>

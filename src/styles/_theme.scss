@@ -1,0 +1,146 @@
+
+// Theme variables
+:root {
+  // Light theme (default)
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #222831;
+  --text-secondary: #393e46;
+  --accent-color: #00adb5;
+  --border-color: #e0e0e0;
+  --card-bg: #ffffff;
+  --shadow-color: rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+}
+
+// Dark theme
+.dark-mode {
+  --bg-primary: #222831;
+  --bg-secondary: #2d333f;
+  --text-primary: #eeeeee;
+  --text-secondary: #c6c9d8;
+  --accent-color: #00adb5;
+  --border-color: #393e46;
+  --card-bg: #2d3546;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --nav-bg: rgba(34, 40, 49, 0.8);
+}
+
+// Apply theme variables to elements
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar {
+  background-color: var(--nav-bg);
+  
+  .nav-link {
+    color: var(--text-primary);
+    
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+  
+  .logo {
+    color: var(--text-primary);
+  }
+}
+
+.section-title {
+  color: var(--text-primary);
+}
+
+.about-section, 
+.skills-section, 
+.education-section, 
+.experience-section, 
+.projects-section, 
+.contact-section {
+  background-color: var(--bg-secondary);
+}
+
+.skill-category, 
+.education-card, 
+.experience-card, 
+.project-card {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 15px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+.skill-tag {
+  background-color: var(--accent-color);
+  color: #ffffff;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+  
+  .light-icon {
+    color: #f9d71c;
+  }
+  
+  .dark-icon {
+    color: var(--text-secondary);
+  }
+  
+  // Style when in dark mode
+  .dark-mode & {
+    .light-icon {
+      color: var(--text-secondary);
+    }
+    
+    .dark-icon {
+      color: #a5b4fc;
+    }
+  }
+}
+
+.mobile-theme-toggle {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  
+  .footer-logo, .footer-text, .copyright-text, .tagline {
+    color: var(--text-primary);
+  }
+}
+
+.contact-form-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  
+  input, textarea {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+    
+    &:focus {
+      border-color: var(--accent-color);
+    }
+  }
+}
+
+// Hero section specific theming
+.hero-section {
+  background-color: var(--bg-primary);
+  
+  .hero-title, .hero-tag {
+    color: var(--text-primary);
+  }
+  
+  .hero-description {
+    color: var(--text-secondary);
+  }
+}

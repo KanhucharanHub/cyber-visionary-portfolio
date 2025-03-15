@@ -14,6 +14,21 @@ import './styles/main.scss';
 
 const queryClient = new QueryClient();
 
+// Initialize theme based on localStorage or system preference
+const initializeTheme = () => {
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  
+  if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+    document.documentElement.classList.add('dark-mode');
+  } else {
+    document.documentElement.classList.add('light-mode');
+  }
+};
+
+// Call the function before rendering
+initializeTheme();
+
 const App = () => (
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
